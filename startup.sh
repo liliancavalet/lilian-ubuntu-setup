@@ -69,14 +69,14 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-#echo 'installing VScode'
-#curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-#sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-#sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-#sudo apt-get install apt-transport-https -y
-#sudo apt-get update
-#sudo apt-get install code -y # or code-insiders
-#
+echo 'installing VScode'
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt-get install apt-transport-https -y
+sudo apt-get update
+sudo apt-get install code -y # or code-insiders
+
 #echo 'installing extensions'
 #code --install-extension dbaeumer.vscode-eslint
 #code --install-extension christian-kohler.path-intellisense
@@ -87,27 +87,29 @@ source ~/.zshrc
 #code --install-extension pmneo.tsimporter
 #code --install-extension waderyan.gitblame
 #code --install-extension yzhang.markdown-all-in-one
-#
-#echo 'installing nvm'
-#sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
-#
-#export NVM_DIR="$HOME/.nvm" && (
-#git clone https://github.com/creationix/nvm.git "$NVM_DIR"
-#cd "$NVM_DIR"
-#git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-#) && \. "$NVM_DIR/nvm.sh"
-#
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#
-#echo 'setting Node.js version 12'
-#source ~/.zshrc
-#nvm --version
-#nvm install 12
-#nvm alias default 12
-#node --version
-#npm --version
-#
+
+echo 'installing nvm'
+sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
+
+echo 'manual install'
+export NVM_DIR="$HOME/.nvm" && (
+git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+cd "$NVM_DIR"
+git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
+
+echo 'loads nvm'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+echo 'setting Node.js version 12'
+source ~/.zshrc
+nvm --version
+nvm install 12
+nvm alias default 12
+node --version
+npm --version
+
 #echo 'installing terminator'
 #sudo apt-get update
 #sudo apt-get install terminator -y
