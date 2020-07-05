@@ -110,6 +110,26 @@ nvm alias default 12
 node --version
 npm --version
 
+echo 'installing Java 8 and 11 (open JDK)'
+echo 'default version will be Java 8'
+sudo apt-get install openjdk-8-jdk -y
+sudo apt-get install openjdk-11-jdk -y
+echo 'Do you wanna set a specific version as default? (y/n)'
+read java_version_as_default
+if echo "$java_version_as_default" | grep -iq "^y" ;then
+	echo 'display installed Java versions'
+	sudo update-java-alternatives --list
+	echo 'paste the desired Java version path'
+	read java_version_path
+	sudo update-java-alternatives --set $java_version_path
+	echo 'setting JAVA_HOME'
+	echo JAVA_HOME=$java_version_path  >> ~/.zshrc
+else
+	echo "Okay, no problem. :) Let's move on!"
+fi
+echo 'display Java version'
+java -version
+
 #echo 'installing terminator'
 #sudo apt-get update
 #sudo apt-get install terminator -y
