@@ -4,13 +4,6 @@ echo 'installing chrome'
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-echo 'installing brave'
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
-sudo apt update
-sudo apt install brave-keyring brave-browser
-
 echo 'installing slack' 
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
 sudo apt install ./slack-desktop-*.deb -y
@@ -69,25 +62,6 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-echo 'installing VScode'
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt-get install apt-transport-https -y
-sudo apt-get update
-sudo apt-get install code -y # or code-insiders
-
-#echo 'installing extensions'
-#code --install-extension dbaeumer.vscode-eslint
-#code --install-extension christian-kohler.path-intellisense
-#code --install-extension dbaeumer.vscode-eslint
-#code --install-extension dracula-theme.theme-dracula
-#code --install-extension esbenp.prettier-vscode
-#code --install-extension foxundermoon.shell-format
-#code --install-extension pmneo.tsimporter
-#code --install-extension waderyan.gitblame
-#code --install-extension yzhang.markdown-all-in-one
-
 echo 'installing nvm'
 sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
 
@@ -129,6 +103,31 @@ else
 fi
 echo 'display Java version'
 java -version
+
+echo 'installing GCC compiler'
+sudo apt install build-essential
+sudo apt-get install manpages-dev
+gcc --version
+
+echo 'installing VScode'
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt-get install apt-transport-https -y
+sudo apt-get update
+sudo apt-get install code -y # or code-insiders
+
+#echo 'installing extensions'
+#code --install-extension dbaeumer.vscode-eslint
+#code --install-extension christian-kohler.path-intellisense
+#code --install-extension dbaeumer.vscode-eslint
+#code --install-extension dracula-theme.theme-dracula
+#code --install-extension esbenp.prettier-vscode
+#code --install-extension foxundermoon.shell-format
+#code --install-extension pmneo.tsimporter
+#code --install-extension waderyan.gitblame
+#code --install-extension yzhang.markdown-all-in-one
+
 
 #echo 'installing terminator'
 #sudo apt-get update
@@ -208,3 +207,11 @@ java -version
 #
 #echo 'enabling workspaces for both screens'
 #gsettings set org.gnome.mutter workspaces-only-on-primary false
+#
+#echo 'installing brave'
+#curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+#source /etc/os-release
+#echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
+#sudo apt update
+#sudo apt install brave-keyring brave-browser
+
