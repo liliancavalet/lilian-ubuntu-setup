@@ -1,123 +1,113 @@
 sudo apt-get update
 
-echo 'installing chrome' 
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+#echo '----------------> Installing chrome' 
+#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-echo 'installing slack' 
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
-sudo apt install ./slack-desktop-*.deb -y
+#echo '----------------> Installing slack' 
+#wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
+#sudo apt install ./slack-desktop-*.deb -y
 
-echo 'installing vim'
-sudo apt install vim -y
-clear
+#echo '----------------> Installing vim'
+#sudo apt install vim -y
+#clear
 
-echo 'installing curl' 
-sudo apt install curl -y
+#echo '----------------> Installing curl' 
+#sudo apt install curl -y
 
-echo 'installing tool to handle clipboard via CLI'
-sudo apt-get install xclip -y
+#echo '----------------> Installing tool to handle clipboard via CLI'
+#sudo apt-get install xclip -y
 
-echo 'installing git' 
-sudo apt install git -y
+#echo '----------------> Installing git' 
+#sudo apt install git -y
 
-echo "What name do you want to use in GIT user.name?"
-echo "For example, mine will be \"Erick Wendel\""
-read git_config_user_name
-git config --global user.name "$git_config_user_name"
-clear 
+#echo "----------------> What name do you want to use in GIT user.name?"
+#echo "----------------> For example, mine will be \"Erick Wendel\""
+#read git_config_user_name
+#git config --global user.name "$git_config_user_name"
+#clear 
 
-echo "What email do you want to use in GIT user.email?"
-echo "For example, mine will be \"erick.workspace@gmail.com\""
-read git_config_user_email
-git config --global user.email $git_config_user_email
-clear
+#echo "----------------> What email do you want to use in GIT user.email?"
+#echo "----------------> For example, mine will be \"erick.workspace@gmail.com\""
+#read git_config_user_email
+#git config --global user.email $git_config_user_email
+#clear
 
-echo "Can I set VIM as your default GIT editor for you? (y/n)"
-read git_core_editor_to_vim
-if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
-	git config --global core.editor vim
-else
-	echo "Okay, no problem. :) Let's move on!"
-fi
+#echo "----------------> Can I set VIM as your default GIT editor for you? (y/n)"
+#read git_core_editor_to_vim
+#if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
+#	git config --global core.editor vim
+#else
+#	echo "----------------> Okay, no problem. :) Let's move on!"
+#fi
 
-echo "Generating a SSH Key"
-ssh-keygen -t rsa -b 4096 -C $git_config_user_email
-ssh-add ~/.ssh/id_rsa
-echo "Remeber to add this SSH key to your favorite web-based version control repository hosting service"
-cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+#echo "----------------> Generating a SSH Key"
+#ssh-keygen -t rsa -b 4096 -C $git_config_user_email
+#ssh-add ~/.ssh/id_rsa
+#echo "----------------> Remeber to add this SSH key to your favorite web-based version control repository hosting service"
+#cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
 
-echo 'installing Z shell'
-sudo apt-get install zsh -y
+#echo '----------------> Installing nvm'
+#sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
 
-echo 'installing git integration (oh-my-zsh) for Z shell'
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
+#echo '----------------> Manual install'
+#export NVM_DIR="$HOME/.nvm" && (
+#git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+#cd "$NVM_DIR"
+#git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+#) && \. "$NVM_DIR/nvm.sh"
 
-echo 'installing Z theme: af-magic'
-sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="af-magic"/g' ~/.zshrc
+#echo '----------------> Loads nvm'
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-echo 'setting pbcopy and pbpaste for Z shell'
-export alias pbcopy='xclip -selection clipboard'
-export alias pbpaste='xclip -selection clipboard -o'
-source ~/.zshrc
+#echo '----------------> Setting Node.js version 12'
+#source ~/.zshrc
+#nvm --version
+#nvm install 12
+#nvm alias default 12
+#echo '----------------> Node.js version'
+#node --version
+#echo '----------------> NPM version'
+#npm --version
 
-echo 'installing nvm'
-sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
+#echo '----------------> Installing Java 8 and 11 (open JDK)'
+#echo '----------------> Default version will be Java 8'
+#sudo apt-get install openjdk-8-jdk -y
+#sudo apt-get install openjdk-11-jdk -y
+#echo '----------------> Do you wanna set a specific version as default, if not 8 will be the default? (y/n)'
+#read java_version_as_default
+#if echo "$java_version_as_default" | grep -iq "^y" ;then
+#	echo '----------------> Installed Java versions'
+#	sudo update-java-alternatives --list
+#	echo '----------------> Paste the desired Java version path'
+#	read java_version_path
+#	sudo update-java-alternatives --set $java_version_path
+#	echo '----------------> Setting JAVA_HOME'
+#	echo JAVA_HOME=$java_version_path  >> ~/.zshrc
+#else
+#	echo "----------------> Okay, no problem Java 8 will be the default. :) Let's move on!"
+#fi
+#echo '----------------> Java version'
+#java -version
 
-echo 'manual install'
-export NVM_DIR="$HOME/.nvm" && (
-git clone https://github.com/creationix/nvm.git "$NVM_DIR"
-cd "$NVM_DIR"
-git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-) && \. "$NVM_DIR/nvm.sh"
+#echo '----------------> Installing GCC compiler'
+#sudo apt install build-essential
+#sudo apt-get install manpages-dev
+#gcc --version
 
-echo 'loads nvm'
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#echo '----------------> Installing VScode'
+#curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+#sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+#sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+#sudo apt-get install apt-transport-https -y
+#sudo apt-get update
+#sudo apt-get install code -y # or code-insiders
 
-echo 'setting Node.js version 12'
-source ~/.zshrc
-nvm --version
-nvm install 12
-nvm alias default 12
-node --version
-npm --version
+#echo '----------------> Installing extensions'
+#echo '----------------> C/C++ language support' 
+#code --install-extension ms-vscode.cpptools
 
-echo 'installing Java 8 and 11 (open JDK)'
-echo 'default version will be Java 8'
-sudo apt-get install openjdk-8-jdk -y
-sudo apt-get install openjdk-11-jdk -y
-echo 'Do you wanna set a specific version as default? (y/n)'
-read java_version_as_default
-if echo "$java_version_as_default" | grep -iq "^y" ;then
-	echo 'display installed Java versions'
-	sudo update-java-alternatives --list
-	echo 'paste the desired Java version path'
-	read java_version_path
-	sudo update-java-alternatives --set $java_version_path
-	echo 'setting JAVA_HOME'
-	echo JAVA_HOME=$java_version_path  >> ~/.zshrc
-else
-	echo "Okay, no problem. :) Let's move on!"
-fi
-echo 'display Java version'
-java -version
-
-echo 'installing GCC compiler'
-sudo apt install build-essential
-sudo apt-get install manpages-dev
-gcc --version
-
-echo 'installing VScode'
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt-get install apt-transport-https -y
-sudo apt-get update
-sudo apt-get install code -y # or code-insiders
-
-#echo 'installing extensions'
 #code --install-extension dbaeumer.vscode-eslint
 #code --install-extension christian-kohler.path-intellisense
 #code --install-extension dbaeumer.vscode-eslint
@@ -129,11 +119,11 @@ sudo apt-get install code -y # or code-insiders
 #code --install-extension yzhang.markdown-all-in-one
 
 
-#echo 'installing terminator'
+#echo '----------------> Installing terminator'
 #sudo apt-get update
 #sudo apt-get install terminator -y
 #
-#echo 'adding dracula theme'
+#echo '----------------> Adding dracula theme'
 #cat <<EOF >  ~/.config/terminator/config
 #[global_config]
 #  title_transmit_bg_color = "#ad7fa8"
@@ -178,7 +168,7 @@ sudo apt-get install code -y # or code-insiders
 #    scrollback_infinite = True
 #EOF
 #
-#echo 'installing docker'
+#echo '----------------> Installing docker'
 #sudo apt-get remove docker docker-engine docker.io
 #sudo apt install docker.io -y
 #sudo systemctl start docker
@@ -188,30 +178,42 @@ sudo apt-get install code -y # or code-insiders
 #chmod 777 /var/run/docker.sock
 #docker run hello-world
 #
-#echo 'installing docker-compose'
+#echo '----------------> Installing docker-compose'
 #sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 #sudo chmod +x /usr/local/bin/docker-compose
 #docker-compose --version
 #
-#echo 'installing aws-cli'
+#echo '----------------> Installing aws-cli'
 #sudo apt-get install awscli -y
 #aws --version
 #curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
 #sudo dpkg -i session-manager-plugin.deb
 #session-manager-plugin --version
 #
-#echo 'installing autosuggestions for Z shell'
+#echo '----------------> Installing autosuggestions for Z shell'
 #git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 #echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 #source ~/.zshrc
 #
-#echo 'enabling workspaces for both screens'
+#echo '----------------> Enabling workspaces for both screens'
 #gsettings set org.gnome.mutter workspaces-only-on-primary false
 #
-#echo 'installing brave'
+#echo '----------------> Installing brave'
 #curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
 #source /etc/os-release
 #echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
 #sudo apt update
 #sudo apt install brave-keyring brave-browser
+
+#echo '----------------> Installing Z shell'
+#sudo apt-get install zsh -y
+
+#echo '----------------> Installing Z theme: af-magic'
+#sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="af-magic"/g' ~/.zshrc
+
+#echo '----------------> Installing git integration (oh-my-zsh) for Z shell'
+#sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+#chsh -s /bin/zsh
+
+
 
