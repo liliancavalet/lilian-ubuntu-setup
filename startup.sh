@@ -105,14 +105,24 @@ sudo apt-get update
 #sudo apt-get install code -y # or code-insiders
 
 #echo '----------------> Installing extensions'
+#echo '----------------> Prettier code formatter' 
+#code --install-extension esbenp.prettier-vscode
+#echo '----------------> Bracket Pair Colorizer' 
+#code --install-extension CoenraadS.bracket-pair-colorizer
+
+#echo '----------------> Plant UML support' 
+#code --install-extension jebbs.plantuml
 #echo '----------------> C/C++ language support' 
 #code --install-extension ms-vscode.cpptools
+#echo '----------------> Java language support' 
+#code --install-extension redhat.java
+#echo '----------------> Java debbuger' 
+#code --install-extension vscjava.vscode-java-debug
 
 #code --install-extension dbaeumer.vscode-eslint
 #code --install-extension christian-kohler.path-intellisense
 #code --install-extension dbaeumer.vscode-eslint
 #code --install-extension dracula-theme.theme-dracula
-#code --install-extension esbenp.prettier-vscode
 #code --install-extension foxundermoon.shell-format
 #code --install-extension pmneo.tsimporter
 #code --install-extension waderyan.gitblame
